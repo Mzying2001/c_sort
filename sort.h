@@ -78,6 +78,28 @@ int cmp_double_greater(void *a, void *b)
     return *(double *)a > *(double *)b;
 }
 
+void bubbleSort(void *arr, int len, size_t ele_size, compare cmp)
+{
+    void *temp = malloc(len * ele_size);
+    for (int i = 0, flag; i < len - 1; ++i)
+    {
+        flag = 1;
+        for (int j = 0; j < len - i - 1; ++j)
+        {
+            if (cmp(_ARR_AT(arr, ele_size, j + 1), _ARR_AT(arr, ele_size, j)))
+            {
+                flag = 0;
+                memcpy(temp, _ARR_AT(arr, ele_size, j), ele_size);
+                memcpy(_ARR_AT(arr, ele_size, j), _ARR_AT(arr, ele_size, j + 1), ele_size);
+                memcpy(_ARR_AT(arr, ele_size, j + 1), temp, ele_size);
+            }
+        }
+        if (flag)
+            break;
+    }
+    free(temp);
+}
+
 void quickSort(void *arr, int left, int right, size_t ele_size, compare cmp)
 {
     if (left >= right)
