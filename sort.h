@@ -80,7 +80,7 @@ int cmp_double_greater(void *a, void *b)
 
 void bubbleSort(void *arr, int len, size_t ele_size, compare cmp)
 {
-    void *temp = malloc(len * ele_size);
+    void *temp = malloc(ele_size);
     for (int i = 0, flag; i < len - 1; ++i)
     {
         flag = 1;
@@ -96,6 +96,27 @@ void bubbleSort(void *arr, int len, size_t ele_size, compare cmp)
         }
         if (flag)
             break;
+    }
+    free(temp);
+}
+
+void selectSort(void *arr, int len, size_t ele_size, compare cmp)
+{
+    void *temp = malloc(ele_size);
+    for (int i = 0, index; i < len - 1; ++i)
+    {
+        index = i;
+        for (int j = i + 1; j < len; ++j)
+        {
+            if (cmp(_ARR_AT(arr, ele_size, j), _ARR_AT(arr, ele_size, index)))
+                index = j;
+        }
+        if (index != i)
+        {
+            memcpy(temp, _ARR_AT(arr, ele_size, index), ele_size);
+            memcpy(_ARR_AT(arr, ele_size, index), _ARR_AT(arr, ele_size, i), ele_size);
+            memcpy(_ARR_AT(arr, ele_size, i), temp, ele_size);
+        }
     }
     free(temp);
 }
