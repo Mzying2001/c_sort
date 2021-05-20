@@ -230,4 +230,39 @@ void mergeSort(void *arr, int len, size_t ele_size, compare cmp)
     free(buffer);
 }
 
+void _adjustHeap(void *arr, int len, int index, void *temp, size_t ele_size, compare cmp)
+{
+    memcpy(temp, _ARR_AT(arr, ele_size, index), ele_size);
+    for (int k = index * 2 + 1; k < len; k = k * 2 + 1)
+    {
+        if (k + 1 < len && cmp(_ARR_AT(arr, ele_size, k), _ARR_AT(arr, ele_size, k + 1)))
+            ++k;
+        if (cmp(temp, _ARR_AT(arr, ele_size, k)))
+        {
+            memcpy(_ARR_AT(arr, ele_size, index), _ARR_AT(arr, ele_size, k), ele_size);
+            index = k;
+        }
+        else
+        {
+            break;
+        }
+    }
+    memcpy(_ARR_AT(arr, ele_size, index), temp, ele_size);
+}
+
+void heapSort(void *arr, int len, size_t ele_size, compare cmp)
+{
+    void *temp = malloc(ele_size);
+    for (int i = len / 2 - 1; i >= 0; --i)
+        _adjustHeap(arr, len, i, temp, ele_size, cmp);
+    for (int j = len - 1; j > 0; --j)
+    {
+        memcpy(temp, _ARR_AT(arr, ele_size, j), ele_size);
+        memcpy(_ARR_AT(arr, ele_size, j), arr, ele_size);
+        memcpy(arr, temp, ele_size);
+        _adjustHeap(arr, j, 0, temp, ele_size, cmp);
+    }
+    free(temp);
+}
+
 #endif
