@@ -121,6 +121,26 @@ void selectSort(void *arr, int len, size_t ele_size, compare cmp)
     free(temp);
 }
 
+void insertSort(void *arr, int len, size_t ele_size, compare cmp)
+{
+    if (len < 2)
+        return;
+    int insert_index;
+    void *insert_value = malloc(ele_size);
+    for (int i = 1; i < len; ++i)
+    {
+        insert_index = i - 1;
+        memcpy(insert_value, _ARR_AT(arr, ele_size, i), ele_size);
+        while (insert_index >= 0 && cmp(insert_value, _ARR_AT(arr, ele_size, insert_index)))
+        {
+            memcpy(_ARR_AT(arr, ele_size, insert_index + 1), _ARR_AT(arr, ele_size, insert_index), ele_size);
+            --insert_index;
+        }
+        memcpy(_ARR_AT(arr, ele_size, insert_index + 1), insert_value, ele_size);
+    }
+    free(insert_value);
+}
+
 void quickSort(void *arr, int left, int right, size_t ele_size, compare cmp)
 {
     if (left >= right)
