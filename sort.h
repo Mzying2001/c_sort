@@ -149,7 +149,7 @@ void shellSort(void *arr, int len, size_t ele_size, compare cmp)
     void *insert_value = malloc(ele_size);
     while (gap /= 2)
     {
-        for (int i = gap; i < len; i++)
+        for (int i = gap; i < len; ++i)
         {
             insert_index = i - gap;
             memcpy(insert_value, _ARR_AT(arr, ele_size, i), ele_size);
@@ -176,12 +176,12 @@ void quickSort(void *arr, int left, int right, size_t ele_size, compare cmp)
     while (l < r)
     {
         while (l < r && cmp(_ARR_AT(arr, ele_size, l), p))
-            l++;
+            ++l;
         if (l < r)
             memcpy(_ARR_AT(arr, ele_size, r--), _ARR_AT(arr, ele_size, l), ele_size);
 
         while (l < r && !cmp(_ARR_AT(arr, ele_size, r), p))
-            r--;
+            --r;
         if (l < r)
             memcpy(_ARR_AT(arr, ele_size, l++), _ARR_AT(arr, ele_size, r), ele_size);
     }
