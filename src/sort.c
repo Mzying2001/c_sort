@@ -89,7 +89,7 @@ void shellSort(void *arr, int len, size_t ele_size, compare cmp)
     free(insert_value);
 }
 
-void quickSort(void *arr, int left, int right, size_t ele_size, compare cmp)
+void _quickSort(void *arr, int left, int right, size_t ele_size, compare cmp)
 {
     if (left >= right)
         return;
@@ -114,23 +114,23 @@ void quickSort(void *arr, int left, int right, size_t ele_size, compare cmp)
     memcpy(_ARR_AT(arr, ele_size, l), p, ele_size);
     free(p);
 
-    quickSort(arr, left, r - 1, ele_size, cmp);
-    quickSort(arr, l + 1, right, ele_size, cmp);
+    _quickSort(arr, left, r - 1, ele_size, cmp);
+    _quickSort(arr, l + 1, right, ele_size, cmp);
 }
 
 void quickSort(void *arr, int len, size_t ele_size, compare cmp)
 {
-    quickSort(arr, 0, len - 1, ele_size, cmp);
+    _quickSort(arr, 0, len - 1, ele_size, cmp);
 }
 
-void mergeSort(void *arr, int left, int right, void *buffer, size_t ele_size, compare cmp)
+void _mergeSort(void *arr, int left, int right, void *buffer, size_t ele_size, compare cmp)
 {
     if (left >= right)
         return;
 
     int mid = (left + right) / 2;
-    mergeSort(arr, left, mid, buffer, ele_size, cmp);
-    mergeSort(arr, mid + 1, right, buffer, ele_size, cmp);
+    _mergeSort(arr, left, mid, buffer, ele_size, cmp);
+    _mergeSort(arr, mid + 1, right, buffer, ele_size, cmp);
 
     int i = left, j = mid + 1, k = 0;
     while (i <= mid && j <= right)
@@ -151,7 +151,7 @@ void mergeSort(void *arr, int left, int right, void *buffer, size_t ele_size, co
 void mergeSort(void *arr, int len, size_t ele_size, compare cmp)
 {
     void *buffer = malloc(len * ele_size);
-    mergeSort(arr, 0, len - 1, buffer, ele_size, cmp);
+    _mergeSort(arr, 0, len - 1, buffer, ele_size, cmp);
     free(buffer);
 }
 

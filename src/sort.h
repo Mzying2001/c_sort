@@ -14,11 +14,7 @@ void insertSort(void *arr, int len, size_t ele_size, compare cmp);
 
 void shellSort(void *arr, int len, size_t ele_size, compare cmp);
 
-void quickSort(void *arr, int left, int right, size_t ele_size, compare cmp);
-
 void quickSort(void *arr, int len, size_t ele_size, compare cmp);
-
-void mergeSort(void *arr, int left, int right, void *buffer, size_t ele_size, compare cmp);
 
 void mergeSort(void *arr, int len, size_t ele_size, compare cmp);
 
