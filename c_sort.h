@@ -1,19 +1,19 @@
 #ifndef C_SORT_H
 #define C_SORT_H
 
-#include <stddef.h>
-#include <malloc.h>
-#include <memory.h>
+#include <string.h>
+#include <stdlib.h>
 
 #define _OFFSET(ptr, off, ele_size) \
     ((char *)(ptr) + (off) * (ele_size))
 
 typedef int (*CompareFunc)(const void *, const void *);
 
-void bubbleSort(void *arr,
-                size_t count,
-                size_t ele_size,
-                CompareFunc cmpf)
+void bubbleSort(
+    void *arr,
+    size_t count,
+    size_t ele_size,
+    CompareFunc cmpf)
 {
     if (count < 2 || ele_size == 0)
         return;
@@ -54,10 +54,11 @@ void bubbleSort(void *arr,
     free(buf);
 }
 
-void selectSort(void *arr,
-                size_t count,
-                size_t ele_size,
-                CompareFunc cmpf)
+void selectSort(
+    void *arr,
+    size_t count,
+    size_t ele_size,
+    CompareFunc cmpf)
 {
     if (count < 2 || ele_size == 0)
         return;
@@ -96,10 +97,11 @@ void selectSort(void *arr,
     free(buf);
 }
 
-void insertSort(void *arr,
-                size_t count,
-                size_t ele_size,
-                CompareFunc cmpf)
+void insertSort(
+    void *arr,
+    size_t count,
+    size_t ele_size,
+    CompareFunc cmpf)
 {
     if (count < 2 || ele_size == 0)
         return;
@@ -137,10 +139,11 @@ void insertSort(void *arr,
     free(buf);
 }
 
-void shellSort(void *arr,
-               size_t count,
-               size_t ele_size,
-               CompareFunc cmpf)
+void shellSort(
+    void *arr,
+    size_t count,
+    size_t ele_size,
+    CompareFunc cmpf)
 {
     if (count < 2 || ele_size == 0)
         return;
@@ -190,12 +193,13 @@ void shellSort(void *arr,
     free(buf);
 }
 
-void _quickSort(void *arr,
-                void *buf,
-                size_t low,
-                size_t high,
-                size_t ele_size,
-                CompareFunc cmpf)
+void _quickSort(
+    void *arr,
+    void *buf,
+    size_t low,
+    size_t high,
+    size_t ele_size,
+    CompareFunc cmpf)
 {
     if (low >= high)
         return;
@@ -239,10 +243,11 @@ void _quickSort(void *arr,
         _quickSort(arr, buf, l + 1, high, ele_size, cmpf);
 }
 
-void quickSort(void *arr,
-               size_t count,
-               size_t ele_size,
-               CompareFunc cmpf)
+void quickSort(
+    void *arr,
+    size_t count,
+    size_t ele_size,
+    CompareFunc cmpf)
 {
     if (count < 2 || ele_size == 0)
         return;
@@ -255,12 +260,13 @@ void quickSort(void *arr,
     free(buf);
 }
 
-void _mergeSort(void *arr,
-                void *buf,
-                size_t low,
-                size_t high,
-                size_t ele_size,
-                CompareFunc cmpf)
+void _mergeSort(
+    void *arr,
+    void *buf,
+    size_t low,
+    size_t high,
+    size_t ele_size,
+    CompareFunc cmpf)
 {
     if (low >= high)
         return;
@@ -314,10 +320,11 @@ void _mergeSort(void *arr,
     }
 }
 
-void mergeSort(void *arr,
-               size_t count,
-               size_t ele_size,
-               CompareFunc cmpf)
+void mergeSort(
+    void *arr,
+    size_t count,
+    size_t ele_size,
+    CompareFunc cmpf)
 {
     if (count < 2 || ele_size == 0)
         return;
@@ -330,12 +337,13 @@ void mergeSort(void *arr,
     free(buf);
 }
 
-void _adjustHeap(void *arr,
-                 void *buf,
-                 size_t count,
-                 size_t index,
-                 size_t ele_size,
-                 CompareFunc cmpf)
+void _adjustHeap(
+    void *arr,
+    void *buf,
+    size_t count,
+    size_t index,
+    size_t ele_size,
+    CompareFunc cmpf)
 {
     memcpy(
         buf,
@@ -373,10 +381,11 @@ void _adjustHeap(void *arr,
         ele_size);
 }
 
-void heapSort(void *arr,
-              size_t count,
-              size_t ele_size,
-              CompareFunc cmpf)
+void heapSort(
+    void *arr,
+    size_t count,
+    size_t ele_size,
+    CompareFunc cmpf)
 {
     if (count < 2 || ele_size == 0)
         return;
